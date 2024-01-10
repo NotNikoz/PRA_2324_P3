@@ -11,8 +11,8 @@ class BSNode {
 	public :
 
 		T elem; // Elemento de tipo T almacenado en el nodo
-		BSNode <T>* left; //Puntero al nodo sucesor izquierdo
-		BSNode <T>* right; //Puntero al nodo sucesor derecho
+		BSNode <T> *left; //Puntero al nodo sucesor izquierdo
+		BSNode <T> *right; //Puntero al nodo sucesor derecho
 
 		//Métodos
 
