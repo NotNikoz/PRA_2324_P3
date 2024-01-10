@@ -25,7 +25,7 @@ class TableEntry {
 
 		TableEntry () {
 
-			key = " ";
+			key = "";
 
 		}
 
@@ -47,6 +47,15 @@ class TableEntry {
 			return out;
 
 		}
+
+		friend bool operator<(const TableEntry<V> &te1, const TableEntry<V> &te2){
+			return (te1.key < te2.key);
+		}
+		
+		friend bool operator>(const TableEntry<V> &te1, const TableEntry<V> &te2){
+			return (te1.key > te2.key);
+		}
+		     
 
 };
 

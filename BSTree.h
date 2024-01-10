@@ -16,7 +16,7 @@ class BSTree {
 
 		BSNode <T> *root; //Nodo raíz del ABB
 				  
-		BSNode <T> *search (BSNode <T> *n, T e) const {
+		T search (BSNode <T> *n, T e) const {
 
 			if (n == nullptr) {
 
@@ -30,7 +30,7 @@ class BSTree {
 
 				return search (n -> left, e);
 
-			} else { return n; //Si es igual se devuelve ese elemento
+			} else { return n -> elem; //Si es igual se devuelve ese elemento
 
 			}
 
@@ -39,8 +39,6 @@ class BSTree {
 		BSNode <T> *insert (BSNode <T> *n, T e) {
 
 			if (n == nullptr) { //Si n es null hemos llegado a un lugar donde se puede insertar el elemento 
-				
-				nelem ++;
 				return new BSNode (e); 
 				
 			} else if (n -> elem == e) { //Si el elemento ya existe devuelve un error
@@ -103,15 +101,7 @@ class BSTree {
 
 				} else { //Si el elemento tiene uno o 0 descendientes
 
-					if (n -> left != nullptr) { 
-						n = n -> left;
-
-					} else if (n -> right != nullptr) {
-						n = n -> right;
-
-					} else {
-						n = nullptr;
-					}
+					n = (n->left != nullptr)? n->left: n->right;
 					
 
 				}
@@ -139,6 +129,7 @@ class BSTree {
 
 		}
 
+
 		BSNode <T> *remove_max (BSNode <T> *n) {
 
 			if (n -> right == nullptr) { //Si el descendiente derecho es nulo 
@@ -163,7 +154,7 @@ class BSTree {
 
 			}
 
-			nelem = 0; //Se actualiza a 0 elementos
+
 
 		}
 						
@@ -187,31 +178,41 @@ class BSTree {
 
 		T search (T e) const { //Devuelve el elemento e de tipo T en el ABB. 
 			
-			return search (root, e).elem;
+			return search (root, e);
 
+		}
+
+		T operator[](T e) const{
+
+				return search(e);
 		}
 
 		void insert (T e) { //Inserta el elemento e de tipo T de manera ordenada en el ABB
 			
 			root = insert (root, e);
+			nelem++;
 
 		}
 
 		friend ostream& operator << (ostream &out, BSTree <T> &bst) { //Sobrecarga del operador <<
 
-			return print_inorder (out, bst.root); //Raiz de bst
+			bst.print_inorden (out, bst.root); //Raiz de bst
+			return out;
 
 		}
 
 		void remove (T e) { //Elimina el elemento e de tipo T del ABB
 
 			remove (root, e);
+			nelem--;
+
 
 		}
 
 		~BSTree() { //Metodo destructor
 			
 			delete_cascade (root);
+			nelem = 0;
 
 		}
 
