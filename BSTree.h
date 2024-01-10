@@ -39,7 +39,8 @@ class BSTree {
 		BSNode <T> *insert (BSNode <T> *n, T e) {
 
 			if (n == nullptr) { //Si n es null hemos llegado a un lugar donde se puede insertar el elemento 
-
+				
+				nelem ++;
 				return new BSNode (e); 
 				
 			} else if (n -> elem == e) { //Si el elemento ya existe devuelve un error
@@ -165,18 +166,7 @@ class BSTree {
 			nelem = 0; //Se actualiza a 0 elementos
 
 		}
-		
-
-
-		
-		
-
-
-
-
-
-
-
+						
 
 
 
